@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../common/app_colors.dart';
 import '../../../../common/textconstants.dart';
-import '../view/widgets/deleteclass.dart';
-import '../view/widgets/deleteconfirm.dart';
-
+import '../../widgets/deleteclass.dart';
+import '../../widgets/deleteconfirm.dart';
 
 
 class Deleteee extends StatefulWidget {

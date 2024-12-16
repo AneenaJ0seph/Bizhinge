@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart'; // Import GetX
 import '../../../../common/app_colors.dart';
-import '../common/textconstants.dart';
-import '../controller/notictrlr.dart';
+import '../../../common/textconstants.dart';
+import '../../../controller/notictrlr.dart';
 
 
 

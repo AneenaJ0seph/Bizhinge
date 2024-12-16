@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../common/app_colors.dart';
-import '../common/textconstants.dart';
+import '../../../common/textconstants.dart';
 
 class EditProfile extends StatelessWidget {
   EditProfile({super.key});

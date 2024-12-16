@@ -138,8 +138,9 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../payment/confirm_failed.dart';
-import '../payment/success.dart';
+import '../view/homescreen/payment/confirm_failed.dart';
+import '../view/homescreen/payment/success.dart';
+
 
 
 class RazorpayController extends GetxController {

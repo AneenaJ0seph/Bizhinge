@@ -258,12 +258,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../common/textconstants.dart';
-import '../../../controller/cartcontroller.dart';
-import '../../model/leaf/leafpro.dart';
-import '../address.dart';
-import '../widgets/cartcontainer.dart';
+import '../../../../common/app_colors.dart';
+import '../../../../common/textconstants.dart';
+import '../../../../controller/cartcontroller.dart';
+
+import '../detailedscreen/address.dart';
+import '../../widgets/cartcontainer.dart';
+import '../leaf/leafpro.dart';
 
 
 

@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import '../../../../common/app_colors.dart';
 
-import '../common/textconstants.dart';
-import '../view/widgets/termclass.dart';
+import '../../../common/textconstants.dart';
+import '../../widgets/termclass.dart';
 
 
 class TermsPage extends StatelessWidget {

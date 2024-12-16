@@ -45,21 +45,16 @@
 // }
 // ignore_for_file: use_key_in_widget_constructors
 
-import 'package:biztrail/view/homescreen/splash.dart';
+import 'package:biztrail/view/homescreen/leaf/leafpro.dart';
+import 'package:biztrail/view/homescreen/mainscreen/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart'; // Unused, you can remove this if not used
-
-import 'authentication/login.dart';
 import 'authentication/signup.dart';
 import 'controller/usercontroller.dart';
-import 'model/leaf/leafpro.dart';
-import 'view/homescreen/firstscreen.dart';
 import 'controller/cartcontroller.dart';
 import 'controller/srchcontrlr.dart';
 
 void main() {
-  // Lazy initialization of controllers
   Get.lazyPut<SrchController>(() => SrchController());
   Get.lazyPut<CartController>(() => CartController());
   Get.put(SignUpController());

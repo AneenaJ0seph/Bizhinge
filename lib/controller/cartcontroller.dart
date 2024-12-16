@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../authentication/signup.dart';
 import '../model/productmodel.dart';
-import '../payment/success.dart';
+import '../view/homescreen/payment/success.dart';
 
 class CartController extends GetxController {
   final String baseUrl =

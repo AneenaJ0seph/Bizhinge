@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../view/homescreen/firstscreen.dart';
+import '../view/homescreen/mainscreen/firstscreen.dart';
 
 class SignInController extends GetxController {
   final companyName = ''.obs;

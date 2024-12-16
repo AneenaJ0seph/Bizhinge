@@ -1,12 +1,9 @@
-import 'package:biztrail/view/homescreen/cartscreen.dart';
+import 'package:biztrail/view/homescreen/mainscreen/cartscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-
-import '../common/app_colors.dart';
-import '../main.dart';
-
+import '../../../common/app_colors.dart';
 
 class OrderFailedPage extends StatelessWidget {
   @override

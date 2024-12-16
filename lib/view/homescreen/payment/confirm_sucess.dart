@@ -665,10 +665,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:uuid/uuid.dart';
 
-import '../common/app_colors.dart';
-import '../controller/cartcontroller.dart';
-import '../authentication/signup.dart';
-import '../view/homescreen/firstscreen.dart';
+import '../../../authentication/signup.dart';
+import '../../../common/app_colors.dart';
+import '../../../controller/cartcontroller.dart';
+import '../mainscreen/firstscreen.dart';
+
 
 class User {
   final String shippingName;

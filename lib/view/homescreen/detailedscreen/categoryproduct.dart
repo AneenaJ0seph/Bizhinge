@@ -1,12 +1,12 @@
 
-import 'package:biztrail/view/homescreen/productdetail.dart';
+import 'package:biztrail/view/homescreen/detailedscreen/productdetail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../common/textconstants.dart';
-import '../../../controller/app_controller.dart';
-import '../../../model/categorymodel.dart';
+import '../../../../common/app_colors.dart';
+import '../../../../common/textconstants.dart';
+import '../../../../controller/app_controller.dart';
+import '../../../../model/categorymodel.dart';
 
 class CategoryProductPage extends StatelessWidget {
   final Category category;

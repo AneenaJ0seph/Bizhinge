@@ -1,13 +1,13 @@
 
-import 'package:biztrail/view/homescreen/profileee.dart';
-import 'package:biztrail/view/homescreen/searchscreen.dart';
+import 'package:biztrail/view/homescreen/mainscreen/profileee.dart';
+import 'package:biztrail/view/homescreen/mainscreen/searchscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../model/usermodel.dart';
-import '../../common/textconstants.dart';
+import '../../../../common/app_colors.dart';
+import '../../../../model/usermodel.dart';
+import '../../../common/textconstants.dart';
 import 'cartscreen.dart';
 import 'homescreen.dart';
 

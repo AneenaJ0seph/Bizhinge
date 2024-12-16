@@ -1,8 +1,8 @@
 import 'package:biztrail/common/textconstants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../common/app_colors.dart';
-import '../../controller/ordrcontler.dart';
+import '../../../common/app_colors.dart';
+import '../../../controller/ordrcontler.dart';
 
 class OrdersPage extends StatelessWidget {
   final OrdersController ordersController = Get.put(OrdersController());

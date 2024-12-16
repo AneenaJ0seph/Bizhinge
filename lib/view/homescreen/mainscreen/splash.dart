@@ -1,8 +1,8 @@
 import 'package:biztrail/authentication/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../common/app_colors.dart';
-import '../../../common/textconstants.dart';
+import '../../../../common/app_colors.dart';
+import '../../../../common/textconstants.dart';
 import 'firstscreen.dart';
 
 class SplashScreen extends StatefulWidget {

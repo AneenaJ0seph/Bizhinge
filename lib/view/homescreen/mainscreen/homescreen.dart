@@ -1,16 +1,16 @@
 
-import 'package:biztrail/view/homescreen/productdetail.dart';
+import 'package:biztrail/view/homescreen/detailedscreen/productdetail.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../common/textconstants.dart';
-import '../../../controller/app_controller.dart';
-import '../../../controller/cartcontroller.dart';
-import '../../model/leaf/leafstate.dart';
-import '../widgets/catlist.dart';
-import 'notiii.dart';
+import '../../../../common/app_colors.dart';
+import '../../../../common/textconstants.dart';
+import '../../../../controller/app_controller.dart';
+import '../../../../controller/cartcontroller.dart';
+import '../../widgets/catlist.dart';
+import '../detailedscreen/notiii.dart';
+import '../leaf/leafstate.dart';
 
 
 class HomeScreen extends StatelessWidget {

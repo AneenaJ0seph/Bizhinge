@@ -5,7 +5,7 @@ import 'package:get/get.dart'; // Import GetX
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../common/app_colors.dart';
-import '../common/textconstants.dart';
+import '../../../common/textconstants.dart';
 
 class HelpCenterPage extends StatelessWidget {
   Future<void> _launchURL(String url) async {

@@ -1,16 +1,15 @@
-import 'package:biztrail/view/homescreen/ordersscreen.dart';
+import 'package:biztrail/view/homescreen/detailedscreen/ordersscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../authentication/signup.dart';
-import '../../common/app_colors.dart';
-import '../../common/textconstants.dart';
-import '../../profile/deleteacc.dart';
-import '../../profile/editprofilee.dart';
-import '../../profile/help.dart';
-import '../../profile/notisettings.dart';
-
-import '../../profile/security.dart';
-import '../../profile/terms.dart';
+import '../../../authentication/signup.dart';
+import '../../../common/app_colors.dart';
+import '../../../common/textconstants.dart';
+import '../profile/deleteacc.dart';
+import '../profile/editprofilee.dart';
+import '../profile/help.dart';
+import '../profile/notisettings.dart';
+import '../profile/security.dart';
+import '../profile/terms.dart';
 
 class Item {
   final String name;

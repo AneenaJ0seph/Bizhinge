@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../common/textconstants.dart';
-import '../controller/chandeaddress_ctlr.dart';
+import '../../../../../common/app_colors.dart';
+import '../../../../../common/textconstants.dart';
+import '../../../controller/chandeaddress_ctlr.dart';
 
 
 class ChangeAddress extends StatelessWidget {

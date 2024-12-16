@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../common/textconstants.dart';
-import '../../../controller/cartcontroller.dart';
-import '../../../model/productmodel.dart';
+import '../../../../common/app_colors.dart';
+import '../../../../common/textconstants.dart';
+import '../../../../controller/cartcontroller.dart';
+import '../../../../model/productmodel.dart';
 
 class ProductDetail extends StatelessWidget {
   final Product product;

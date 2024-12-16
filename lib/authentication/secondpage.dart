@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:biztrail/authentication/signup.dart';
-import 'package:biztrail/view/homescreen/firstscreen.dart';
+import 'package:biztrail/view/homescreen/mainscreen/firstscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';

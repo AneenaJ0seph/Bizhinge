@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../common/app_colors.dart';
 import '../../common/textconstants.dart';
 import '../../controller/app_controller.dart';
-import '../homescreen/categoryproduct.dart';
+import '../homescreen/detailedscreen/categoryproduct.dart';
 
 class Cataglist extends StatelessWidget {
   const Cataglist({
