@@ -1,12 +1,12 @@
-import 'package:biztrail/view/homescreen/detailedscreen/ordersscreen.dart';
+import 'package:biztrail/view/homescreen/profile/help.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../authentication/signup.dart';
 import '../../../common/app_colors.dart';
 import '../../../common/textconstants.dart';
+import '../detailedscreen/ordersscreen.dart';
 import '../profile/deleteacc.dart';
 import '../profile/editprofilee.dart';
-import '../profile/help.dart';
 import '../profile/notisettings.dart';
 import '../profile/security.dart';
 import '../profile/terms.dart';
@@ -84,15 +84,14 @@ class Profile extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(13),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      radius: 20,
-                      backgroundColor: black,
-                      child: Icon(Icons.maps_home_work_sharp, color: white, size: 30),
-                    ),SizedBox(width: 20,),
+                  Image.asset(
+                  'assets/logo.png', // Replace with your image path
+                  height: 50, // Adjust image size as needed
+                ),SizedBox(width: 20,),
                     Padding(
                       padding: const EdgeInsets.only(right: 150),
                       child: Text(

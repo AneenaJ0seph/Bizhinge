@@ -270,6 +270,12 @@ class NeededTextstyles {
     fontWeight: FontWeight.w600,
     color: grey,
   );
+  static TextStyle style91 = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: grey,
+  );
 
   // darktheme1
 
@@ -379,7 +385,7 @@ class NeededTextstyles {
       fontFamily: 'KaushanScript',
       fontWeight: FontWeight.w500,
       fontSize: 20,
-      color: maintheme1
+      color: Darktheme1
   );
 
   static TextStyle signhead= TextStyle(

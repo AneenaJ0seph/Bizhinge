@@ -1,9 +1,11 @@
+import 'package:biztrail/controller/cartcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/textconstants.dart';
 import '../../../controller/chandeaddress_ctlr.dart';
+import '../payment/success.dart';
 
 
 class ChangeAddress extends StatelessWidget {
@@ -11,7 +13,7 @@ class ChangeAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final changeAddressController = Get.put(ChangeAddressController());
+    final changeAddressController = Get.put(CartController());
 
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +36,7 @@ class ChangeAddress extends StatelessWidget {
                   // Single TextFormField
                   TextFormField(
                     decoration: InputDecoration(
-                        hintText: 'Shop Name',
+                        hintText: 'Enter Address here..',
                         hintStyle: NeededTextstyles.style03),
                     onChanged: (value) =>
                     changeAddressController.address.value = value,
@@ -45,11 +47,34 @@ class ChangeAddress extends StatelessWidget {
                     height: 40,
                     width: 350,
                     child: ElevatedButton(
-                      onPressed: () {
-                        changeAddressController
-                            .saveAddress(); // Save the address using GetX controller
-                        Navigator.pop(
-                            context); // Navigate back to the previous screen after saving
+                      onPressed: ()
+                      async {
+                        final cartController = Get.find<CartController>();
+
+                        if (cartController.address.value.isEmpty) {
+                          Get.snackbar(
+                            'Error',
+                            'Please provide a billing address before placing the order.',
+                            snackPosition: SnackPosition.BOTTOM,
+
+                          );
+                          Get.to(() => FadeInAndSlide());
+                          return;
+                        }
+
+                        if (cartController.cartItems.isEmpty) {
+                          Get.snackbar(
+                            'Error',
+                            'Your cart is empty. Add items before placing an order.',
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
+                          Get.to(() => FadeInAndSlide());
+                          return;
+                        }
+
+                        // // Assuming `product` is the current product being ordered
+                        // await cartController.placeOrder(product);
+                        Get.back();
                       },
                       child:
                       Text("Save Address", style: NeededTextstyles.style05),

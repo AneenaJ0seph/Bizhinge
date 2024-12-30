@@ -324,24 +324,35 @@ import 'package:biztrail/authentication/secondpage.dart';
 import 'package:biztrail/authentication/signin.dart';
 
 import 'package:biztrail/common/app_colors.dart';
+import 'package:biztrail/model/usermodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../common/textconstants.dart';
+import 'log.dart';
 
 
 class SignUpController extends GetxController {
   final companyName = ''.obs;
-
-  final id=''.obs;
   final contactPerson = ''.obs;
-  final referralCode = ''.obs;
   final phone = ''.obs;
-  // final address = ''.obs;
+  final referralCode = ''.obs;
   var isChecked = false.obs;
 
+  // Method to save user data into the model
+  BusinessUser saveUserData(String id) {
+    return BusinessUser(
+
+      companyName: companyName.value,
+      contactPerson: contactPerson.value,
+      phone: phone.value, uploadedFile: '',
+
+    );
+  }
+
+  // Method to validate inputs
   bool validateInputs() {
-    if (companyName.isEmpty || contactPerson.isEmpty || phone.isEmpty ) {
+    if (companyName.isEmpty || contactPerson.isEmpty || phone.isEmpty) {
       Get.snackbar("Error", "All fields except referral are mandatory.");
       return false;
     }
@@ -432,31 +443,31 @@ class SignUpPage extends StatelessWidget {
               SizedBox(height: 30),
               Obx(
                     () => Padding(
-                      padding: const EdgeInsets.only(left: 40),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 20,
-                            width: 20,
+                  padding: const EdgeInsets.only(left: 40),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 20,
+                        width: 20,
 
-                            child: Checkbox(
-                                              value: controller.isChecked.value,
-                                              onChanged: (value) => controller.isChecked.value = value!,
-                                              shape: CircleBorder(), // Circular checkbox shape
-                                              activeColor:maintheme1, // Active color
-                                              checkColor: white, // Checkmark color
-                                            ),
-                          ),
-                          SizedBox(width: 8,),
-                          Expanded(
-                            child: Text(
-                              'I agree with the terms of Service & Privacy Policy',
-                              style:NeededTextstyles.style03,
-                            ),
-                          ),
-                        ],
+                        child: Checkbox(
+                          value: controller.isChecked.value,
+                          onChanged: (value) => controller.isChecked.value = value!,
+                          shape: CircleBorder(), // Circular checkbox shape
+                          activeColor:maintheme1, // Active color
+                          checkColor: white, // Checkmark color
+                        ),
                       ),
-                    ),
+                      SizedBox(width: 8,),
+                      Expanded(
+                        child: Text(
+                          'I agree with the terms of Service & Privacy Policy',
+                          style:NeededTextstyles.style03,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
 
               SizedBox(height: 20,),
@@ -467,11 +478,11 @@ class SignUpPage extends StatelessWidget {
                   onPressed: () {
 
 
-                      if (controller.validateInputs() && controller.isChecked.value) {
-                        Get.to(() => SecondPage()); // Navigate to the next page after signing up
-                      } else if (!controller.isChecked.value) {
-                        Get.snackbar("Error", "You must accept the terms and conditions.");
-                      }
+                    if (controller.validateInputs() && controller.isChecked.value) {
+                      Get.to(() => SecondPage()); // Navigate to the next page after signing up
+                    } else if (!controller.isChecked.value) {
+                      Get.snackbar("Error", "You must accept the terms and conditions.");
+                    }
 
                   },
                   child: Text(
@@ -502,7 +513,7 @@ class SignUpPage extends StatelessWidget {
                           style: NeededTextstyles.style17,
                         ),
                         onTap: (){
-                          Get.to(() => SignInPage());
+                          Get.to(() => LoginPage());
                         },
                       ),
                     ),
@@ -538,4 +549,3 @@ class SignUpPage extends StatelessWidget {
     );
   }
 }
-

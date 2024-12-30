@@ -255,15 +255,16 @@
 //   }
 // }
 
+import 'package:biztrail/view/homescreen/mainscreen/firstscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/app_colors.dart';
-import '../../../../common/textconstants.dart';
-import '../../../../controller/cartcontroller.dart';
-
-import '../detailedscreen/address.dart';
+import '../../../common/app_colors.dart';
+import '../../../common/textconstants.dart';
+import '../../../controller/cartcontroller.dart';
 import '../../widgets/cartcontainer.dart';
+import '../detailedscreen/address.dart';
+import '../detailedscreen/categoryproduct.dart';
 import '../leaf/leafpro.dart';
 
 
@@ -290,10 +291,33 @@ class CartScreen extends StatelessWidget {
       ),
       body: Obx(() {
         if (cartController.cartItems.isEmpty) {
-          return const Center(
-            child: Text(
-              'Your cart is empty!',
-              style: TextStyle(fontSize: 18, color: Colors.grey),
+          return  Center(
+            child: Column(
+              children: [
+                Text(
+                  'Oops! Your cart looks lonely. \n Time to fill it with some goodies!',
+                  style: NeededTextstyles.style91,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Get.to(() => FirstScreen(companyName: '',
+                    //
+                    // ));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: lighttheme79,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: Text(
+                    'Buy Now',
+                    style: TextStyle(color: white),
+                  ),
+                ),
+              ],
             ),
           );
         } else {
@@ -431,21 +455,52 @@ class CartScreen extends StatelessWidget {
                                   height: 44,
                                   width: 244,
                                   child: ElevatedButton(
-                                    onPressed: () {
-                                      // Check if cart is empty
+                                    onPressed: () async {
                                       if (cartController.cartItems.isNotEmpty) {
-                                        final product = cartController.cartItems
-                                            .first; // Pick first product
-                                        cartController.placeOrder(product);
+                                        final product = cartController.cartItems.first; // Get the UserModel instance
+
+                                        cartController.placeOrder(product,);
+
+                                        Get.find<LeafCoinController>().addCoin(
+                                          "New Coins Added",
+                                          "Added on 16 Dec 2024",
+                                          "+10",
+                                        );
                                       } else {
-                                        Get.snackbar(
-                                            "Error", "Your cart is empty.");
+
+                                        Get.snackbar("Error", "Your cart is empty.");
+
                                       }
-                                      Get.find<LeafCoinController>().addCoin(
-                                        "New Coins Added", // Title for the transaction
-                                        "Added on 16 Dec 2024", // Subtitle
-                                        "+10", // Amount
-                                      );
+                                      // // if (cartController.cartItems.isNotEmpty) {
+                                      // //   final product = cartController.cartItems.first;
+                                      // //
+                                      // //   // Attempt to place the order
+                                      // //   final isOrderPlaced = await cartController.placeOrder(product);
+                                      // //
+                                      // //   if (isOrderPlaced) {
+                                      // //     // Additional actions for a successful order
+                                      // //     print('Order successfully placed!');
+                                      // //   } else {
+                                      // //     print('Order placement failed.');
+                                      // //   }
+                                      // // } else {
+                                      // //   Get.snackbar("Error", "Your cart is empty.");
+                                      // // }
+                                      // if (cartController.cartItems.isNotEmpty) {
+                                      //   final product = cartController.cartItems.first; // Get the first product from cart
+                                      //
+                                      //   // Ensure total price is updated before placing the order
+                                      //   cartController.calculateTotalPrice();
+                                      //
+                                      //   // Pass the product to place the order
+                                      //   await cartController.placeOrder(product);
+                                      //
+                                      //   // Optional: Show success message or perform additional actions after placing the order
+                                      // } else {
+                                      //   // If the cart is empty, show an error message
+                                      //   Get.snackbar("Error", "Your cart is empty.");
+                                      // }
+
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: maintheme1,

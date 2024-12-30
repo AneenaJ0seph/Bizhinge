@@ -1,5 +1,6 @@
 import 'package:biztrail/common/textconstants.dart';
 import 'package:biztrail/view/homescreen/detailedscreen/productdetail.dart';
+import 'package:biztrail/view/homescreen/mainscreen/firstscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,8 @@ class SearchScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Get.back();
+            Get.to(() => FirstScreen(companyName: companyName));
+            
           },
         ),
       ),
@@ -85,7 +87,7 @@ class SearchScreen extends StatelessWidget {
                       subtitle: Text('Price: ${product.price}'),
                       onTap: () {
                         // Navigate to ProductDetail
-                        Get.to(() => ProductDetail(product: product));
+                        Get.to(() => ProductDetail(product: product, companyName: '',));
                       },
                     );
                   },

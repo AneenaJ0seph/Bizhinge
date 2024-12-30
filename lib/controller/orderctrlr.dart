@@ -15,7 +15,7 @@ class OrderController extends GetxController {
   Future<void> fetchOrderDetails() async {
     try {
       final response = await http.get(
-        Uri.parse('https://btobapi-production.up.railway.app/api/orders/'),
+        Uri.parse('http://btobapi-production.up.railway.app/api/orders'),
       );
 
       if (response.statusCode == 200) {

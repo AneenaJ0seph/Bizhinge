@@ -1,6 +1,6 @@
 import 'dart:io';
+import 'package:biztrail/authentication/signin.dart';
 import 'package:biztrail/authentication/signup.dart';
-import 'package:biztrail/view/homescreen/mainscreen/firstscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
@@ -8,13 +8,14 @@ import 'package:http/http.dart' as http;
 
 import '../common/app_colors.dart';
 import '../common/textconstants.dart';
+import '../view/homescreen/mainscreen/firstscreen.dart';
 
 class SecondPageController extends GetxController {
   File? uploadedFile;
-  var isVerifyLoading = false.obs; // Separate loading state for Verify button
-  var isSkipLoading = false.obs;   // Separate loading state for Skip button
-  var isFileUploaded = false.obs; // Reactive variable to track if a file is uploaded
-  var isAgreed = false.obs;       // Reactive variable to track user consent
+  var isVerifyLoading = false.obs;
+  var isSkipLoading = false.obs;
+  var isFileUploaded = false.obs;
+  var isAgreed = false.obs;
 
   void pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -33,7 +34,7 @@ class SecondPageController extends GetxController {
     try {
       final url = Uri.parse('https://btobapi-production.up.railway.app/api/business_users/');
       final request = http.MultipartRequest('POST', url)
-        ..fields['id'] = Get.find<SignUpController>().id.value
+
         ..fields['company_name'] = Get.find<SignUpController>().companyName.value
         ..fields['contact_person'] = Get.find<SignUpController>().contactPerson.value
         ..fields['referral_code'] = Get.find<SignUpController>().referralCode.value
@@ -73,7 +74,7 @@ class SecondPageController extends GetxController {
 
       if (response.statusCode == 201) {
         Get.snackbar("Success", "Skipped successfully!");
-        Get.offAll(() => FirstScreen(companyName: Get.find<SignUpController>().companyName.value));
+        Get.offAll(() =>ConfirmScreen());
       } else {
         print("Error: ${response.body}");
         Get.snackbar("Error", "Failed to skip: ${response.statusCode}");

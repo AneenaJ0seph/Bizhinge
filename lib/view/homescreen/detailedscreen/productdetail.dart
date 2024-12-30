@@ -8,12 +8,13 @@ import '../../../../model/productmodel.dart';
 
 class ProductDetail extends StatelessWidget {
   final Product product;
+  final String companyName;
 
-  const ProductDetail({Key? key, required this.product}) : super(key: key);
+  const ProductDetail({Key? key, required this.product, required this.companyName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Initialize the CartController
+    // Initialize CartController with companyName
     final CartController cartController = Get.put(CartController());
 
     return Scaffold(

@@ -34,9 +34,7 @@ class ProfileController extends GetxController {
       final response = await http.put(url, body: {
         'company_name': companyName,
         'contact_person': contactPerson,
-        'email': email,
         'phone': phone,
-        'address': address,
       });
 
       if (response.statusCode == 200) {
@@ -44,9 +42,7 @@ class ProfileController extends GetxController {
         businessUser.value = businessUser.value?.copyWith(
           companyName: companyName,
           contactPerson: contactPerson,
-          email: email,
           phone: phone,
-          address: address,
         );
         Get.snackbar('Success', 'Profile updated successfully');
       } else {

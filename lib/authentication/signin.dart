@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../controller/signinctrlr.dart';
 
-class SignInPage extends StatelessWidget {
-  final controller = Get.put(SignInController());
+import '../controller/loginctrlr.dart';
+
+
+class ConfirmScreen extends StatelessWidget {
+  final LoginController loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 350),
@@ -24,7 +26,7 @@ class SignInPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 50, left: 10),
                 child: Text(
-                  'Welcome Back!',
+                  'Confirm your phone number',
                   style: GoogleFonts.poppins(
                     fontSize: 25,
                     fontWeight: FontWeight.w500,
@@ -33,48 +35,26 @@ class SignInPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              _buildTextField(
-                hint: "Company Name",
-                icon: Icons.store,
-                onChanged: (value) => controller.companyName.value = value.trim(),
-              ),
-              _buildTextField(
-                hint: "Phone",
-                icon: Icons.phone,
-                onChanged: (value) => controller.phone.value = value.trim(),
+              TextField(
+                controller: loginController.phoneController,
+                decoration: InputDecoration(
+                  hintText: "phone number",
+                  prefixIcon: Icon(Icons.phone),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                ),
+                keyboardType: TextInputType.phone,
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: controller.signIn,
-                child: Text(
-                  "Sign In",
-                  style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff6EBC31),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                ),
-              ),
+              Obx(() {
+                return loginController.isLoading.value
+                    ? CircularProgressIndicator()
+                    : ElevatedButton(
+                  onPressed: loginController.login,
+                  child: Text('Sign In'),
+                );
+              }),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required String hint,
-    required IconData icon,
-    required Function(String) onChanged,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        onChanged: onChanged,
-        decoration: InputDecoration(
-          hintText: hint,
-          prefixIcon: Icon(icon),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
         ),
       ),
     );

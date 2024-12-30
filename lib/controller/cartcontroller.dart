@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../authentication/signup.dart';
 import '../model/productmodel.dart';
+import '../view/homescreen/leaf/leafpro.dart';
 import '../view/homescreen/payment/success.dart';
+import 'loginctrlr.dart';
 
 class CartController extends GetxController {
   final String baseUrl =
@@ -86,7 +87,6 @@ class CartController extends GetxController {
     }
   }
 
-  // Clear the entire cart
   void clearCart() {
     cartItems.clear();
     calculateTotalPrice();
@@ -113,13 +113,16 @@ class CartController extends GetxController {
   // Options for additional items
   double get discountPrice => totalPrice.value > 100 ? 10.0 : 0.0;
 
-  double get finalPrice =>
-      totalPrice.value +
-          (addSample.value ? 5.0 : 0.0) +
-          (addDisplayStand.value ? 10.0 : 0.0) +
-          (addBrochure.value ? 2.0 : 0.0) +
-          (addLeafcoin.value ? 1.0 : 0.0) -
-          discountPrice;
+  LeafCoinController leafCoinController = LeafCoinController();
+
+  double get finalPrice {
+    return totalPrice.value +
+        (addSample.value ? 0.0 : 0.0) +
+        (addDisplayStand.value ? 0.0 : 0.0) +
+        (addBrochure.value ? 0.0 : 0.0) +
+        (addLeafcoin.value ? 0.0 : leafCoinController.availableCoins.value) -
+        discountPrice;
+  }
 
   // Toggle methods for additional items
   void toggleAddSample(bool value) => addSample.value = value;
@@ -160,8 +163,8 @@ class CartController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        clearCart();
         Get.snackbar("Success", "Your order has been placed successfully!");
+        clearCart();
       } else {
         Get.snackbar(
             "Error", "Failed to place the order. ${response.statusCode}");
@@ -197,135 +200,7 @@ class CartController extends GetxController {
     }
   }
 
-  // Future<void> placeOrder(Product product) async {
-  //   if (cartItems.isEmpty) {
-  //     Get.snackbar('Error', 'Cart is empty');
-  //     return;
-  //   }
 
-  //   final orderData = {
-  //     "business_user": 1, // Replace with actual user ID
-  //     "order_date": DateTime.now().toIso8601String(),
-  //     "total_price": totalPrice.toStringAsFixed(2),
-  //     "billing_address":
-  //         "Default Address", // Replace with dynamic address if needed
-  //     "status": "Processing",
-  //     "order_type": "Online",
-  //     "order_products": cartItems.map((item) {
-  //       return {
-  //         "product": product.id,
-  //         "product_name": product.productName ?? "Unknown Product",
-  //         "quantity": product.minimumOrderQuantity ?? 1,
-  //         "price": product.price?.toString() ?? "0.0",
-  //       };
-  //     }).toList(),
-  //   };
-
-  //   print('Order Data: ${json.encode(orderData)}');
-
-  //   try {
-  //     final response = await http.post(
-  //       Uri.parse('https://btobapi-production.up.railway.app/api/orders/'),
-  //       headers: {'Content-Type': 'application/json'},
-  //       body: json.encode(orderData),
-  //     );
-
-  //     print('Response Status Code: ${response.statusCode}');
-  //     print('Response Body: ${response.body}');
-
-  //     if (response.statusCode == 201) {
-  //       cartItems.clear();
-  //       Get.snackbar('Success', 'Order placed successfully');
-  //       Get.offAll(() => NothingScreen());
-  //     } else {
-  //       final responseBody = jsonDecode(response.body);
-  //       final errorMessage = responseBody['detail'] ??
-  //           'Failed to place the order. Please try again later.';
-  //       Get.snackbar('Error', errorMessage);
-  //     }
-  //   } catch (e) {
-  //     print('Error occurred: $e');
-  //     Get.snackbar('Error', 'Failed to place order: $e');
-  //   }
-  // }
-
-  // Future<void> placeOrder(Product product) async {
-  //   if (cartItems.isEmpty) {
-  //     Get.snackbar('Error', 'Cart is empty');
-  //     return;
-  //   }
-  //
-  //   final orderData = {
-  //     "business_user": 14, // Replace with actual user ID
-  //     "order_date": DateTime.now().toIso8601String(),
-  //     "total_price": totalPrice.toStringAsFixed(2),
-  //     "billing_address":
-  //     "Default Address", // Replace with dynamic address if needed
-  //     "status": "Processing",
-  //     "order_type": "Online",
-  //     "order_products": cartItems.map((item) {
-  //       return {
-  //         "product": product.id,
-  //         "product_name": product.productName ?? "Unknown Product",
-  //         "quantity": product.minimumOrderQuantity ?? 1,
-  //         "price": product.price?.toString() ?? "0.0",
-  //       };
-  //     }).toList(),
-  //   };
-  //
-  //   print('Order Data: ${json.encode(orderData)}');
-  //
-  //   try {
-  //     final response = await http.post(
-  //       Uri.parse('https://btobapi-production.up.railway.app/api/orders/'),
-  //       headers: {'Content-Type': 'application/json'},
-  //       body: json.encode(orderData),
-  //     );
-  //
-  //     print('Response Status Code: ${response.statusCode}');
-  //     print('Response Body: ${response.body}');
-  //
-  //     if (response.statusCode == 201) {
-  //       // Success - clear the cart and navigate
-  //       cartItems.clear();
-  //       Get.snackbar('Success', 'Order placed successfully');
-  //       Get.offAll(() => Razorpay());
-  //     } else {
-  //       // Error handling for non-201 responses
-  //       if (response.headers['content-type']?.contains('application/json') ??
-  //           false) {
-  //         try {
-  //           final responseBody = jsonDecode(response.body);
-  //           final errorMessage = responseBody['detail'] ??
-  //               'Failed to place the order. Please try again later.';
-  //           Get.snackbar('Error', errorMessage);
-  //           Get.offAll(() =>
-  //           razorpayController.openCheckout(
-  //                                       amount: (cartController.finalPrice).toInt(), // Amount in paise
-  //                                       shopName: 'BixHinge',
-  //                                       description: 'Checkout Payment for Cart Items',
-  //                                       contact: razorpayController.contact.value, // Accessing contact value
-  //                                       email: razorpayController.email.value, // Accessing email value
-  //                                     );
-  //         } catch (e) {
-  //           // In case the response is not valid JSON, show a general error message
-  //           Get.snackbar('Error',
-  //               'Unexpected error occurred while processing the response.');
-  //           Get.offAll(() => Razorpay());
-  //         }
-  //       } else {
-  //         // Handle cases where the response body is not JSON (e.g., HTML error page)
-  //         Get.snackbar(
-  //             'Error', 'Unexpected server error. Please try again later.');
-  //         Get.offAll(() => Razorpay());
-  //       }
-  //     }
-  //   } catch (e) {
-  //     // Handle network or any other error
-  //     print('Error occurred: $e');
-  //     Get.snackbar('Error', 'Failed to place order: $e');
-  //   }
-  // }
 
   Future<void> placeOrder(Product product) async {
     if (cartItems.isEmpty) {
@@ -333,13 +208,22 @@ class CartController extends GetxController {
       return;
     }
 
+    final loginController = Get.find<LoginController>();
+    final userModel = loginController.userModel;
 
+
+    if (userModel == null) {
+      Get.snackbar('Error', 'User not logged in. Please log in again.');
+      return;
+    }
+
+    print("UserModel ID: ${userModel.id}");
 
     final orderData = {
-      "business_user": 14, // Replace with actual user ID
+      "business_user": userModel.id, // Use ID from LoginController
       "order_date": DateTime.now().toIso8601String(),
       "total_price": totalPrice.toStringAsFixed(2),
-      "billing_address": 'default address', // Use dynamic address
+      "billing_address": address.value,
       "status": "Processing",
       "order_type": "Online",
       "order_products": cartItems.map((item) {
@@ -365,38 +249,22 @@ class CartController extends GetxController {
       print('Response Body: ${response.body}');
 
       if (response.statusCode == 201) {
-        // Success - clear the cart and navigate to Razorpay screen
-        cartItems.clear();
+
         Get.snackbar('Success', 'Order placed successfully');
-        // Navigate to Razorpay screen
-        Get.to(() => FadeInAndSlide()); // Replace with your Razorpay screen widget
+        Get.to(() => FadeInAndSlide());
       } else {
-        // Error handling for non-201 responses
-        if (response.headers['content-type']?.contains('application/json') ??
-            false) {
-          try {
-            final responseBody = jsonDecode(response.body);
-            final errorMessage = responseBody['detail'] ??
-                'Success Order placed successfully';
-            Get.snackbar('Success', errorMessage);
-            cartItems.clear();
-            Get.to(() => FadeInAndSlide());
-          } catch (e) {
-            Get.snackbar('Success', 'Order placed successfully');
-            cartItems.clear();
-            Get.to(() => FadeInAndSlide());
-          }
-        } else {
-          Get.snackbar('Success', 'Order placed successfully');
-          cartItems.clear();
-          Get.to(() => FadeInAndSlide());
-        }
+        final responseBody = jsonDecode(response.body);
+        final errorMessage = responseBody['detail'] ?? 'Unexpected error';
+        Get.snackbar('Error', errorMessage);
+        Get.to(() => FadeInAndSlide());
       }
     } catch (e) {
-      // Handle network or any other error
       print('Error occurred: $e');
-      Get.snackbar('Success', 'Order placed successfully $e');
+      Get.snackbar('Error', 'An error occurred while placing the order: $e');
+      Get.to(() => FadeInAndSlide());
     }
   }
+
+
 
 }

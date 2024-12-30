@@ -13,16 +13,32 @@ import '../detailedscreen/notiii.dart';
 import '../leaf/leafstate.dart';
 
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   final String companyName;
+
+  HomeScreen({required this.companyName});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final List<String> banners = [
     "assets/img_5.png",
     "assets/img_5.png",
   ];
-  final AppController controller = Get.put(AppController());
-  final CartController cartController = Get.put(CartController());
 
-  HomeScreen({required this.companyName});
+  late final CartController cartController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Initialize CartController here where 'widget' is accessible
+    cartController = Get.put(CartController());
+  }
+
+  final AppController controller = Get.put(AppController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +57,20 @@ class HomeScreen extends StatelessWidget {
         leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
-                backgroundColor: lighttheme84,
-                child: Icon(Icons.maps_home_work_outlined,color: black,))
+
+                  backgroundColor: Colors.transparent,
+                child: Image.asset(
+                  'assets/logo.png',
+                  height: 40,
+                ),
+            )
         ),
         title: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                "Hi  $companyName", // Dynamic shop name
+                "Hi  ${widget.companyName}",
                 style: NeededTextstyles.homeapp
             ),
             Text(
@@ -161,7 +182,7 @@ class HomeScreen extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         // Use GetX for navigation
-                        Get.to(() => ProductDetail(product: product));
+                        Get.to(() => ProductDetail(product: product, companyName: 'dvdc',));
                       },
                       child: Card(
 
@@ -251,5 +272,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
