@@ -255,7 +255,6 @@
 //   }
 // }
 
-import 'package:biztrail/view/homescreen/mainscreen/firstscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -264,7 +263,6 @@ import '../../../common/textconstants.dart';
 import '../../../controller/cartcontroller.dart';
 import '../../widgets/cartcontainer.dart';
 import '../detailedscreen/address.dart';
-import '../detailedscreen/categoryproduct.dart';
 import '../leaf/leafpro.dart';
 
 
@@ -291,33 +289,13 @@ class CartScreen extends StatelessWidget {
       ),
       body: Obx(() {
         if (cartController.cartItems.isEmpty) {
-          return  Center(
-            child: Column(
-              children: [
-                Text(
-                  'Oops! Your cart looks lonely. \n Time to fill it with some goodies!',
-                  style: NeededTextstyles.style91,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Get.to(() => FirstScreen(companyName: '',
-                    //
-                    // ));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: lighttheme79,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Text(
-                    'Buy Now',
-                    style: TextStyle(color: white),
-                  ),
-                ),
-              ],
+          return const Center(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                'Oops!😞 Your cart looks lonely,\nTime to fill it with some goodies!',
+                style: TextStyle(fontSize: 18, color: Colors.grey),
+              ),
             ),
           );
         } else {

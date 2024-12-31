@@ -151,7 +151,7 @@ class CategoryProductPage extends StatelessWidget {
                   ),
                 ),
                 trailing:  Text(
-                  '\$${product.price?.toStringAsFixed(2)}',
+                  '₹${product.price?.toStringAsFixed(2)}',
                   style: NeededTextstyles.style11.copyWith(
                     color: isOutOfStock ? Colors.grey : null, // Dim text
                   ),

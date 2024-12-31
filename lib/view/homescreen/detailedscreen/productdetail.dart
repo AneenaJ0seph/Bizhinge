@@ -1,3 +1,5 @@
+import 'package:biztrail/view/homescreen/mainscreen/cartscreen.dart';
+import 'package:biztrail/view/homescreen/mainscreen/firstscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -73,6 +75,7 @@ class ProductDetail extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   cartController.addToCart(product);
+                  Get.to(FirstScreen(companyName: companyName));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: lighttheme79,

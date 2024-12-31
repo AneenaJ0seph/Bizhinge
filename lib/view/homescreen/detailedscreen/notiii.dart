@@ -6,37 +6,7 @@ import '../../../common/app_colors.dart';
 
 class NotificationsPage extends StatelessWidget {
   final List<Map<String, dynamic>> notifications = [
-    // {
-    //   'category': 'Messages',
-    //   'notifications': [
-    //     {
-    //       'title': 'New Message from Support',
-    //       'description': 'We\'ve received your request and will get back to you shortly.',
-    //       'time': '5 mins ago',
-    //       'icon': Icons.message,
-    //     },
-    //   ]
-    // },
-    //
-    // {
-    //   'category': 'Updates',
-    //   'notifications': [
-    //     {
-    //       'title': 'App Update Available',
-    //       'description': 'A new update is available for the app. Download now for the latest features.',
-    //       'time': 'Yesterday',
-    //       'icon': Icons.system_update,
-    //     },
-    //     {
-    //       'title': 'System Maintenance Scheduled',
-    //       'description': 'Maintenance scheduled for this Saturday. App may be temporarily unavailable.',
-    //       'time': '2 days ago',
-    //       'icon': Icons.build,
-    //     },
-    //
-    //     ]
-    //   },
-    // ];
+
     {
       'category': 'Orders',
       'notifications': [
