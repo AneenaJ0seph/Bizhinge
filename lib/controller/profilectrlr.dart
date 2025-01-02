@@ -9,7 +9,7 @@ class ProfileController extends GetxController {
   // Fetch profile data from the API
   Future<void> fetchProfile() async {
     try {
-      final response = await http.get(Uri.parse('https://apib2b-production.up.railway.app/api/business_users/'));
+      final response = await http.get(Uri.parse('https://sadapi-production.up.railway.app/api/business_users/'));
 
       if (response.statusCode == 200) {
         final businessUserData = businessUserFromJson(response.body);
@@ -30,7 +30,7 @@ class ProfileController extends GetxController {
     }
 
     try {
-      final url = Uri.parse('http://btobapi-production.up.railway.app/api/business_users/${businessUser.value?.id}');
+      final url = Uri.parse('https://sadapi-production.up.railway.app/api/business_users/${businessUser.value?.id}');
       final response = await http.put(url, body: {
         'company_name': companyName,
         'contact_person': contactPerson,

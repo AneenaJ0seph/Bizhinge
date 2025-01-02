@@ -8,7 +8,7 @@ import 'loginctrlr.dart';
 
 class CartController extends GetxController {
   final String baseUrl =
-      'https://btobapi-production.up.railway.app/api/';
+      'https://sadapi-production.up.railway.app/api/';
   var cartItems = <Product>[].obs;
   var totalPrice = 0.0.obs;
   var address = ''.obs;
@@ -131,51 +131,51 @@ class CartController extends GetxController {
   void toggleAddLeafcoin(bool value) => addLeafcoin.value = value;
 
   // Checkout method to submit the order and clear the cart
-  Future<void> checkout() async {
-    if (cartItems.isEmpty) {
-      Get.snackbar("Error", "Your cart is empty!");
-      return;
-    }
-
-    isLoading.value = true;
-
-    final orderData = {
-      "business_user": null,
-      "total_price": totalPrice.value,
-      "billing_address": address.value,
-      "status": "Processing",
-      "order_type": "Online",
-      "order_products": cartItems
-          .map((item) => {
-        "product": item.id,
-        "product_name": item.productName,
-        "quantity": item.minimumOrderQuantity,
-        "price": item.price.toString(),
-      })
-          .toList(),
-    };
-
-    try {
-      final response = await http.post(
-        Uri.parse('$baseUrl/orders'),
-        headers: {"Content-Type": "application/json"},
-        body: json.encode(orderData),
-      );
-
-      if (response.statusCode == 200) {
-        Get.snackbar("Success", "Your order has been placed successfully!");
-        clearCart();
-      } else {
-        Get.snackbar(
-            "Error", "Failed to place the order. ${response.statusCode}");
-      }
-    } catch (e) {
-      Get.snackbar("Error", "An error occurred: $e");
-    } finally {
-      isLoading.value = false;
-    }
-  }
-
+  // Future<void> checkout() async {
+  //   if (cartItems.isEmpty) {
+  //     Get.snackbar("Error", "Your cart is empty!");
+  //     return;
+  //   }
+  //
+  //   isLoading.value = true;
+  //
+  //   final orderData = {
+  //     "business_user": null,
+  //     "total_price": totalPrice.value,
+  //     "billing_address": address.value,
+  //     "status": "Processing",
+  //     "order_type": "Online",
+  //     "order_products": cartItems
+  //         .map((item) => {
+  //       "product": item.id,
+  //       "product_name": item.productName,
+  //       "quantity": item.minimumOrderQuantity,
+  //       "price": item.price.toString(),
+  //     })
+  //         .toList(),
+  //   };
+  //
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse('$baseUrl/orders'),
+  //       headers: {"Content-Type": "application/json"},
+  //       body: json.encode(orderData),
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       Get.snackbar("Success", "Your order has been placed successfully!");
+  //       clearCart();
+  //     } else {
+  //       Get.snackbar(
+  //           "Error", "Failed to place the order. ${response.statusCode}");
+  //     }
+  //   } catch (e) {
+  //     Get.snackbar("Error", "An error occurred: $e");
+  //   } finally {
+  //     isLoading.value = false;
+  //   }
+  // }
+  //
   // Method to update the user's address in the backend
   Future<void> updateAddress(String newAddress) async {
     isLoading.value = true;
@@ -240,7 +240,7 @@ class CartController extends GetxController {
 
     try {
       final response = await http.post(
-        Uri.parse('https://btobapi-production.up.railway.app/api/orders/'),
+        Uri.parse('https://sadapi-production.up.railway.app/api/orders/'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode(orderData),
       );

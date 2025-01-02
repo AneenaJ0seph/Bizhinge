@@ -28,7 +28,7 @@ class SignInController extends GetxController {
     if (!validateInputs()) return;
 
     try {
-      final url = Uri.parse('http://btobapi-production.up.railway.app/api/business_users/');
+      final url = Uri.parse('https://sadapi-production.up.railway.app/api/business_users/');
 
       // Prepare the request body
       final Map<String, dynamic> body = {

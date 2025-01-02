@@ -24,7 +24,7 @@ class OrdersController extends GetxController {
 
       String userCompany = loginController.userModel?.companyName ?? 'DefaultCompany'; // Fallback to 'DefaultCompany' if companyName is null
 
-      String apiUrl = 'https://btobapi-production.up.railway.app/api/orders/by-customer/$userCompany/';
+      String apiUrl = 'https://sadapi-production.up.railway.app/api/orders/by-customer/$userCompany/';
 
       final response = await http.get(Uri.parse(apiUrl));
 

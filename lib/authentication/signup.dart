@@ -321,7 +321,7 @@
 // }
 
 import 'package:biztrail/authentication/secondpage.dart';
-import 'package:biztrail/authentication/signin.dart';
+import 'package:biztrail/authentication/confirmscreen.dart';
 
 import 'package:biztrail/common/app_colors.dart';
 import 'package:biztrail/model/usermodel.dart';

@@ -165,7 +165,7 @@ class RazorpayController extends GetxController {
 
   // Function to call the API and fetch payment details
   Future<void> fetchPaymentDetailsAndCheckout() async {
-    final url = 'http://btobapi-production.up.railway.app/api'; // Replace with your API endpoint
+    final url = 'https://sadapi-production.up.railway.app/api/'; // Replace with your API endpoint
 
     try {
       final response = await http.get(Uri.parse(url));
