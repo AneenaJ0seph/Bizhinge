@@ -68,7 +68,7 @@ class LoginController extends GetxController {
     try {
       final response = await http.get(
         Uri.parse(
-          'http://sadapi-production.up.railway.app/api/business_users/$phone',
+          'http://sadapi-production.up.railway.app/api/business_user/$phone',
         ),
       );
 

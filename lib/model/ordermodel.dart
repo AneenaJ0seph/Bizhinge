@@ -39,9 +39,22 @@ class Order {
           [],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'business_user': businessUserId,
+      'order_date': orderDate,
+      'total_price': totalPrice,
+      'billing_address': billingAddress,
+      'status': status,
+      'order_type': orderType,
+      'cashback_applied': cashbackApplied,
+      'order_products': orderProducts.map((product) => product.toJson()).toList(),
+    };
+  }
 }
 
-// Order Product Model
 class OrderProduct {
   final int quantity;
   final double price;
@@ -59,5 +72,13 @@ class OrderProduct {
       price: double.tryParse(json['price'].toString()) ?? 0.0,
       product: Product.fromJson(json['product']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'quantity': quantity,
+      'price': price,
+      'product': product.toJson(),
+    };
   }
 }

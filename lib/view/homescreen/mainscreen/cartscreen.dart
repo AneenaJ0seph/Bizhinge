@@ -434,64 +434,116 @@ class CartScreen extends StatelessWidget {
                                   width: 244,
                                   child: ElevatedButton(
                                     onPressed: () async {
-                                      if (cartController.cartItems.isNotEmpty) {
-                                        final product = cartController.cartItems.first; // Get the UserModel instance
+                                      if (cartController.isLoading.value) return; // Prevent duplicate submissions
 
-                                        cartController.placeOrder(product,);
-
-                                        Get.find<LeafCoinController>().addCoin(
-                                          "New Coins Added",
-                                          "Added on 16 Dec 2024",
-                                          "+10",
-                                        );
-                                      } else {
-
+                                      if (cartController.cartItems.isEmpty) {
                                         Get.snackbar("Error", "Your cart is empty.");
-
+                                        return;
                                       }
-                                      // // if (cartController.cartItems.isNotEmpty) {
-                                      // //   final product = cartController.cartItems.first;
-                                      // //
-                                      // //   // Attempt to place the order
-                                      // //   final isOrderPlaced = await cartController.placeOrder(product);
-                                      // //
-                                      // //   if (isOrderPlaced) {
-                                      // //     // Additional actions for a successful order
-                                      // //     print('Order successfully placed!');
-                                      // //   } else {
-                                      // //     print('Order placement failed.');
-                                      // //   }
-                                      // // } else {
-                                      // //   Get.snackbar("Error", "Your cart is empty.");
-                                      // // }
-                                      // if (cartController.cartItems.isNotEmpty) {
-                                      //   final product = cartController.cartItems.first; // Get the first product from cart
-                                      //
-                                      //   // Ensure total price is updated before placing the order
-                                      //   cartController.calculateTotalPrice();
-                                      //
-                                      //   // Pass the product to place the order
-                                      //   await cartController.placeOrder(product);
-                                      //
-                                      //   // Optional: Show success message or perform additional actions after placing the order
-                                      // } else {
-                                      //   // If the cart is empty, show an error message
-                                      //   Get.snackbar("Error", "Your cart is empty.");
-                                      // }
 
+                                      cartController.isLoading.value = true; // Set loading state to true
+
+                                      try {
+                                        // Place order for the first product in the cart
+                                        final product = cartController.cartItems.first;
+                                        final isOrderPlaced = await cartController.placeOrder(product);
+
+                                        if (isOrderPlaced) {
+                                          // Display success message
+                                          Get.snackbar("Success", "Your order has been placed!");
+
+                                          // Add LeafCoin on successful order
+                                          Get.find<LeafCoinController>().addCoin(
+                                            "New Coins Added",
+                                            "Added on ${DateTime.now().toLocal()}",
+                                            "+10",
+                                          );
+                                        } else {
+                                          // Handle failure to place order
+                                          Get.snackbar("Error", "Failed to place the order. Please try again.");
+                                        }
+                                      } catch (e) {
+                                        // Handle unexpected errors
+                                        Get.snackbar("Error", "An unexpected error occurred: $e");
+                                      } finally {
+                                        // Reset loading state
+                                        cartController.isLoading.value = false;
+                                      }
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: maintheme1,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(15.0),
+                                        borderRadius: BorderRadius.circular(15.0),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: Obx(() => cartController.isLoading.value
+                                        ? CircularProgressIndicator(color: Colors.white)
+                                        : Text(
                                       'Proceed to Checkout',
                                       style: NeededTextstyles.style05,
-                                    ),
+                                    )),
                                   ),
+
+                                  // ElevatedButton(
+                                  //   onPressed: () async {
+                                  //     if (cartController.cartItems.isNotEmpty) {
+                                  //       final product = cartController.cartItems.first; // Get the UserModel instance
+                                  //
+                                  //       cartController.placeOrder(product,);
+                                  //
+                                  //       Get.find<LeafCoinController>().addCoin(
+                                  //         "New Coins Added",
+                                  //         "Added on 16 Dec 2024",
+                                  //         "+10",
+                                  //       );
+                                  //     } else {
+                                  //
+                                  //       Get.snackbar("Error", "Your cart is empty.");
+                                  //
+                                  //     }
+                                  //     // // if (cartController.cartItems.isNotEmpty) {
+                                  //     // //   final product = cartController.cartItems.first;
+                                  //     // //
+                                  //     // //   // Attempt to place the order
+                                  //     // //   final isOrderPlaced = await cartController.placeOrder(product);
+                                  //     // //
+                                  //     // //   if (isOrderPlaced) {
+                                  //     // //     // Additional actions for a successful order
+                                  //     // //     print('Order successfully placed!');
+                                  //     // //   } else {
+                                  //     // //     print('Order placement failed.');
+                                  //     // //   }
+                                  //     // // } else {
+                                  //     // //   Get.snackbar("Error", "Your cart is empty.");
+                                  //     // // }
+                                  //     // if (cartController.cartItems.isNotEmpty) {
+                                  //     //   final product = cartController.cartItems.first; // Get the first product from cart
+                                  //     //
+                                  //     //   // Ensure total price is updated before placing the order
+                                  //     //   cartController.calculateTotalPrice();
+                                  //     //
+                                  //     //   // Pass the product to place the order
+                                  //     //   await cartController.placeOrder(product);
+                                  //     //
+                                  //     //   // Optional: Show success message or perform additional actions after placing the order
+                                  //     // } else {
+                                  //     //   // If the cart is empty, show an error message
+                                  //     //   Get.snackbar("Error", "Your cart is empty.");
+                                  //     // }
+                                  //
+                                  //   },
+                                  //   style: ElevatedButton.styleFrom(
+                                  //     backgroundColor: maintheme1,
+                                  //     shape: RoundedRectangleBorder(
+                                  //       borderRadius:
+                                  //       BorderRadius.circular(15.0),
+                                  //     ),
+                                  //   ),
+                                  //   child: Text(
+                                  //     'Proceed to Checkout',
+                                  //     style: NeededTextstyles.style05,
+                                  //   ),
+                                  // ),
                                 ),
                               ),
                             ],

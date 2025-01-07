@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:biztrail/authentication/confirmscreen.dart';
 import 'package:biztrail/authentication/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,13 +8,14 @@ import 'package:http/http.dart' as http;
 import '../common/app_colors.dart';
 import '../common/textconstants.dart';
 import '../view/homescreen/mainscreen/firstscreen.dart';
+import 'confirmscreen.dart';
 
 class SecondPageController extends GetxController {
   File? uploadedFile;
-  var isVerifyLoading = false.obs;
-  var isSkipLoading = false.obs;
-  var isFileUploaded = false.obs;
-  var isAgreed = false.obs;
+  var isVerifyLoading = false.obs; // Separate loading state for Verify button
+  var isSkipLoading = false.obs;   // Separate loading state for Skip button
+  var isFileUploaded = false.obs; // Reactive variable to track if a file is uploaded
+  var isAgreed = false.obs;       // Reactive variable to track user consent
 
   void pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();

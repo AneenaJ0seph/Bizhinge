@@ -321,7 +321,6 @@
 // }
 
 import 'package:biztrail/authentication/secondpage.dart';
-import 'package:biztrail/authentication/confirmscreen.dart';
 
 import 'package:biztrail/common/app_colors.dart';
 import 'package:biztrail/model/usermodel.dart';
@@ -342,7 +341,6 @@ class SignUpController extends GetxController {
   // Method to save user data into the model
   BusinessUser saveUserData(String id) {
     return BusinessUser(
-
       companyName: companyName.value,
       contactPerson: contactPerson.value,
       phone: phone.value, uploadedFile: '',
@@ -378,7 +376,7 @@ class SignUpPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 350),
                 child: IconButton(
-                  onPressed: () => Get.back(),
+                  onPressed: () => Get.offAll(() =>LoginPage()),
                   icon: Icon(Icons.arrow_back_ios),
                 ),
               ),
